@@ -1,0 +1,46 @@
+[package]
+name = "pulse-mobile"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sqlx.workspace = true
+quinn.workspace = true
+rustls.workspace = true
+aes-gcm.workspace = true
+x25519-dalek.workspace = true
+rand.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+async-trait.workspace = true
+futures.workspace = true
+
+# Mobile-specific dependencies
+flutter_rust_bridge = "1.82"
+flutter_rust_bridge_codegen = "1.82"
+jni = "0.21"
+android_logger = "0.13"
+log = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.7", features = ["v4", "serde"] }
+reqwest = { version = "0.11", features = ["json"] }
+base64 = "0.21"
+dirs = "5.0"
+dotenv = "0.15"
+
+pulse-crypto = { path = "../crypto" }
+
+[target.'cfg(target_os = "android")'.dependencies]
+android_logger = "0.13"
+jni = "0.21"
+
+[target.'cfg(target_os = "ios")'.dependencies]
+objc = "0.2"
+objc-foundation = "0.1"
+objc_id = "0.1" 

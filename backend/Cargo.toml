@@ -1,0 +1,36 @@
+[package]
+name = "pulse-backend"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sqlx.workspace = true
+quinn.workspace = true
+rustls.workspace = true
+aes-gcm.workspace = true
+x25519-dalek.workspace = true
+rand.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+async-trait.workspace = true
+futures.workspace = true
+
+# Additional dependencies
+uuid = { version = "1.7", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+jsonwebtoken = "9.2"
+argon2 = "0.5"
+base64 = "0.21"
+dotenv = "0.15"
+env_logger = "0.11"
+axum = "0.7"
+tower = "0.4"
+tower-http = { version = "0.5", features = ["trace"] }
+
+pulse-crypto = { path = "../crypto" } 

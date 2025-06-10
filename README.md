@@ -4,14 +4,14 @@
 
 ## Features
 
-- 🔒 **End-to-End Encryption**: Messages, calls, and media secured with AES-256 and the X3DH/Double Ratchet protocol.
+- 🔒 **End-to-End Encryption**: Messages secured with AES-256-GCM and X25519 key exchange.
 - ⚡ **Ultra-Fast**: Built with Rust and QUIC for low-latency, real-time communication.
 - 🌐 **Cross-Platform**: Native apps for iOS, Android, Windows, macOS, and Linux with seamless sync.
-- 🎨 **Customizable UI**: Themes, animated stickers, and dynamic layouts for a personalized experience.
-- 🤖 **Local AI Features**: On-device AI for smart replies, translations, and summaries, preserving privacy.
-- 💬 **Group Chats**: Encrypted group chats (up to 1,000 users) with threaded replies.
+- 🎨 **Customizable UI**: Themes and dynamic layouts for a personalized experience.
+- 💬 **Group Chats**: Encrypted group chats with message threading.
 - 🕒 **Self-Destructing Messages**: Auto-deleting messages for enhanced privacy.
-- 📞 **High-Quality Calls**: Low-latency voice/video calls with noise suppression and background blur.
+- 📱 **Native Mobile Experience**: Flutter-based mobile app with native Rust core.
+- 🖥️ **Modern Desktop UI**: egui-based desktop client with responsive design.
 
 ## Getting Started
 
@@ -19,7 +19,7 @@
 - Rust >= 1.82 (with `cargo`)
 - SQLite >= 3.45 (for local storage)
 - OpenSSL >= 3.3 (for cryptographic operations)
-- CMake and a C++ compiler (for native dependencies)
+- Flutter SDK (for mobile development)
 - Android NDK (for Android builds)
 - Xcode (for iOS/macOS builds)
 
@@ -43,11 +43,10 @@
 3. **Mobile App Setup**
    ```bash
    cd mobile
-   cargo build --release --target aarch64-linux-android # For Android
-   cargo build --release --target aarch64-apple-ios # For iOS
+   flutter pub get
+   flutter build apk --release # For Android
+   flutter build ios --release # For iOS
    ```
-   - For Android: Use Android Studio to package the Rust binary into an APK.
-   - For iOS: Use Xcode to bundle the Rust binary into an IPA.
 
 4. **Desktop App Setup**
    ```bash
@@ -57,48 +56,93 @@
    ```
 
 5. **Configure Environment**
-   - Initialize a SQLite database for local message storage.
-   - Update `.env` files in `backend`, `mobile`, and `desktop` with server endpoints and encryption keys.
+   - Initialize a SQLite database for local message storage
+   - Update `.env` files in `backend`, `mobile`, and `desktop` with server endpoints and encryption keys
 
 ### Running Locally
 - Start the backend: `cargo run --release --bin pulse-server`
-- Run the mobile app: Use Android Studio/Xcode to deploy the compiled binary.
+- Run the mobile app: Use Flutter to deploy the app
 - Launch the desktop app: `cargo run --release --bin pulse-desktop`
 
 ## Project Structure
 ```
 pulse/
 ├── backend/        # Rust-based QUIC server and API
-├── mobile/         # Rust-based mobile app with native bindings
+│   ├── src/        # Server source code
+│   │   ├── api.rs  # REST API endpoints
+│   │   ├── db.rs   # Database operations
+│   │   └── main.rs # Server entry point
+├── mobile/         # Flutter-based mobile app with Rust core
+│   ├── lib/        # Flutter UI code
+│   └── src/        # Rust core functionality
 ├── desktop/        # Rust-based desktop app with egui GUI
-├── crypto/         # Rust cryptographic utilities (E2EE, key exchange)
+│   ├── src/        # Desktop app source code
+│   │   ├── ui/     # UI components
+│   │   └── main.rs # Desktop app entry point
+├── crypto/         # Rust cryptographic utilities
+│   └── src/        # Encryption and key exchange
 ├── docs/           # Documentation and protocol specs
 └── scripts/        # Build and deployment scripts
 ```
+
+## Implemented Features
+
+### Backend
+- RESTful API endpoints for user management and messaging
+- SQLite database integration for data persistence
+- JWT-based authentication
+- Message encryption and key management
+
+### Desktop Client
+- Modern egui-based user interface
+- Multiple screens (Login, Chat, Settings)
+- End-to-end encryption
+- Local configuration management
+- Message history
+- Contact management
+- Theme support
+- Notification settings
+
+### Mobile Client
+- Flutter-based UI with native Rust core
+- Local SQLite storage
+- End-to-end encryption
+- Message synchronization
+- Chat management
+- User authentication
+- Configuration management
+- Cross-platform support (iOS/Android)
+
+### Crypto Module
+- AES-256-GCM encryption
+- X25519 key exchange
+- Secure key storage
+- Message signing and verification
 
 ## Contributing
 
 We welcome contributions! Follow these steps:
 
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/your-feature`.
-3. Commit changes: `git commit -m "Add your feature"`.
-4. Push to the branch: `git push origin feature/your-feature`.
-5. Open a pull request.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit changes: `git commit -m "Add your feature"`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a pull request
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## Security
 
 Pulse prioritizes security:
-- End-to-end encryption for all communications.
-- Minimal, anonymized metadata storage.
-- Rust’s memory safety prevents common vulnerabilities.
-- Regular security audits.
+- End-to-end encryption for all communications
+- Minimal, anonymized metadata storage
+- Rust's memory safety prevents common vulnerabilities
+- Regular security audits
 
 ## Roadmap
 - [x] Core messaging with E2EE
 - [x] Cross-platform sync
+- [x] Basic UI implementation
 - [ ] Voice and video calls (WebRTC integration)
 - [ ] On-device AI features
 - [ ] Public beta release

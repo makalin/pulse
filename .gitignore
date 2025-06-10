@@ -1,0 +1,50 @@
+# Rust specific
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDE specific
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+*.apk
+*.ipa
+*.app
+*.dmg
+
+# Dependencies
+node_modules/
+vendor/
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+*.profraw
+
+# Documentation
+docs/_build/
+site/
+
+# Temporary files
+*.tmp
+*.temp 

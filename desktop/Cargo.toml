@@ -1,0 +1,38 @@
+[package]
+name = "pulse-desktop"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sqlx.workspace = true
+quinn.workspace = true
+rustls.workspace = true
+aes-gcm.workspace = true
+x25519-dalek.workspace = true
+rand.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+async-trait.workspace = true
+futures.workspace = true
+
+# GUI dependencies
+eframe = "0.26"
+egui = "0.26"
+egui_extras = "0.26"
+image = "0.24"
+notify = "6.1"
+rfd = "0.13"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.7", features = ["v4", "serde"] }
+reqwest = { version = "0.11", features = ["json"] }
+base64 = "0.21"
+dirs = "5.0"
+dotenv = "0.15"
+
+pulse-crypto = { path = "../crypto" } 
